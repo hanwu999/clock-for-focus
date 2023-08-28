@@ -1,0 +1,22 @@
+name: Python Schedule
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x' # 指定Python版本
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt # 安装依赖
+      - name: Run Python script
+        run: python chaolaide.py # 运行Python脚本
